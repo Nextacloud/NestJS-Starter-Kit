@@ -7,13 +7,14 @@ Simple NestJS Application Starter Kit which includes Express, TypeOrm, Passport 
 1. Docker Composed installed
 2. Node 14.15.4 and above
 3. NPM 6.14.10 and above
+4. Yarn
 
 Note: Not sure if older node and npm would work or not
 
 ## Installation
 
 ```bash
-$ npm install
+$ yarn
 $ cp .env.example .env
 ```
 
@@ -27,13 +28,13 @@ $ docker-composer up -d
 $ yarn migrate
 
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Logging in to Adminer for Postgres
@@ -77,13 +78,13 @@ database: db
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn test
 
 # e2e tests
-$ npm run test:e2e
+$ yarn test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn test:cov
 ```
 
 ## License
