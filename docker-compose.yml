@@ -1,18 +1,18 @@
 version: '3.8'
 services:
-  # db_mysql:
-  #   container_name: project_db_mysql
-  #   image: mysql:5.7
-  #   restart: always
-  #   volumes:
-  #     - ./data:/var/lib/mysql
+  # web:
+  #   container_name: ${APP_NAME}
+  #   image: ee0dd0712e5e
+  #   env_file:
+  #     - .env # load the .env file into this container
   #   ports:
-  #     - ${DATABASE_PORT}:${DATABASE_PORT}
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
-  #     MYSQL_DATABASE: ${DATABASE_DB}
-  #     MYSQL_USER: ${DATABASE_USERNAME}
-  #     MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+  #     - '${APP_PORT}:${APP_PORT}'
+  #   links:
+  #     - 'db_pg:db_pg'
+  #     # - 'db_mysql:db_mysql'
+  #   depends_on:
+  #     - db_pg
+  #     # - db_mysql
 
   db_pg:
     container_name: project_db_pg
@@ -26,6 +26,20 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_ROOT_PASSWORD} # Super User Password
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_DB: ${DATABASE_DB}
+
+  # db_mysql:
+  #   container_name: project_db_mysql
+  #   image: mysql:5.7
+  #   restart: always
+  #   volumes:
+  #     - ./data:/var/lib/mysql
+  #   ports:
+  #     - ${DATABASE_PORT}:${DATABASE_PORT}
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${DATABASE_DB}
+  #     MYSQL_USER: ${DATABASE_USERNAME}
+  #     MYSQL_PASSWORD: ${DATABASE_PASSWORD}
 
   # If you are struggling to login to your adminer,
   # delete data folder in the root folder,

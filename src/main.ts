@@ -9,6 +9,11 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.setGlobalPrefix('api');
 
-  await app.listen(process.env.APP_PORT || 3000);
+  const APP_PORT = process.env.APP_PORT || 3000;
+  const APP_NAME = process.env.APP_NAME || 'NestJS Starter Kit';
+
+  console.log(`${APP_NAME} is listening at http://localhost:${APP_PORT}`);
+
+  await app.listen(APP_PORT);
 }
 bootstrap();

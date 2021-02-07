@@ -1,15 +1,17 @@
-FROM node:15.6.0-alpine3.12
+FROM node:14.15.4-alpine3.10
+
+ARG APP_PORT
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --verbose
+COPY yarn.lock ./
 
-COPY . ./
+RUN yarn
 
-ENV PORT=3000
+COPY . .
 
-EXPOSE 3000
+EXPOSE ${APP_PORT}
 
-CMD [ "npm", "run", "start" ]
+CMD [ "yarn", "start:dev" ]
