@@ -5,8 +5,10 @@ Simple NestJS Application Starter Kit which includes Express, TypeOrm, Passport 
 ## Requirement
 
 1. Docker Composed installed
-2. Node 12 and above
-3. NPM 6 and above
+2. Node 14.15.4 and above
+3. NPM 6.14.10 and above
+
+Note: Not sure if older node and npm would work or not
 
 ## Installation
 
@@ -20,6 +22,9 @@ $ cp .env.example .env
 ```bash
 # spinning up the database using docker and Adminer
 $ docker-composer up -d
+
+# migrate the db
+$ yarn migrate
 
 # development
 $ npm run start
