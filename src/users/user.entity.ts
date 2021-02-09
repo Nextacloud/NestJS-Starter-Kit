@@ -8,10 +8,11 @@ import {
 } from 'typeorm';
 import { IsEmail, IsNotEmpty, Length } from 'class-validator';
 import { Exclude } from 'class-transformer';
+import { UserInterface } from './interface/user.interface';
 
 @Entity()
 @Unique(['username', 'email', 'id'])
-export class User {
+export class User implements UserInterface {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -32,9 +33,6 @@ export class User {
 
   @Column({ length: 255 })
   last_name: string;
-
-  @Column({ type: 'date' })
-  date_of_birth: string;
 
   @Column({ length: 255 })
   @Length(6, 30, {

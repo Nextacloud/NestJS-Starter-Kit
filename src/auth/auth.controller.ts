@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { hash } from 'bcrypt';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserReqDto } from 'src/users/dto/req/create-user.req.dto';
+import { CreatedUserResDto } from 'src/users/dto/res/created-user.res.dto';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 
@@ -9,9 +10,12 @@ export class AuthController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('register')
-  async register(@Body() createUserDto: CreateUserDto): Promise<User> {
-    createUserDto.password = await hash(createUserDto.password, 10);
-    const user: User = await this.usersService.create(createUserDto);
-    return user;
+  async register(
+    @Body() createUserReqDto: CreateUserReqDto,
+  ): Promise<CreatedUserResDto> {
+    createUserReqDto.password = await hash(createUserReqDto.password, 10);
+    const user: User = await this.usersService.create(createUserReqDto);
+
+    return new CreatedUserResDto(user);
   }
 }

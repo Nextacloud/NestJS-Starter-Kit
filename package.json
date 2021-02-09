@@ -21,7 +21,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:clear": "npx typeorm schema:drop",
     "migration:generate": "npx typeorm migration:generate --outputJs",
-    "migrate": "npx typeorm migration:run"
+    "migrate": "npx typeorm migration:run",
+    "migrate:refresh": "yarn db:clear && yarn migrate"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
@@ -35,6 +36,7 @@
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
+    "dayjs": "^1.10.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "pg": "^8.5.1",

@@ -1,5 +1,7 @@
 import { IsDateString, IsNotEmpty } from 'class-validator';
-export class CreatedUserResponseDto {
+import { Match } from 'src/decorators/validators/Match';
+
+export class CreateUserReqDto {
   @IsNotEmpty()
   username: string;
 
@@ -17,10 +19,9 @@ export class CreatedUserResponseDto {
   date_of_birth: string;
 
   @IsNotEmpty()
-  @IsDateString({ strict: true })
-  created_at: string;
+  password: string;
 
   @IsNotEmpty()
-  @IsDateString({ strict: true })
-  updated_at: string;
+  @Match('password')
+  password_confirmation: string;
 }
