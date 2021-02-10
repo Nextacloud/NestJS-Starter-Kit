@@ -2,7 +2,7 @@ import { IsDateString, IsNotEmpty } from 'class-validator';
 import { UserInterface } from 'src/users/interface/user.interface';
 import * as dayjs from 'dayjs';
 
-export class CreatedUserResDto {
+export class UserResource {
   constructor(data: UserInterface) {
     this.username = data.username;
     this.email = data.email;

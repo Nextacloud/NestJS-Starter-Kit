@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeepPartial } from 'typeorm';
-import { CreateUserReqDto } from './dto/req/create-user.req.dto';
+import { CreateUserReqDto } from './dto/create-user.req.dto';
 import { User } from './user.entity';
 
 @Injectable()
