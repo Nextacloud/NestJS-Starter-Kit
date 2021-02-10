@@ -12,7 +12,10 @@ import { UsersModule } from './users/users.module';
     TypeOrmModule.forRoot(),
     UsersModule,
     AuthModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      cache: true,
+      isGlobal: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
