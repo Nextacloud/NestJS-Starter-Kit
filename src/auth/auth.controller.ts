@@ -1,21 +1,22 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { hash } from 'bcrypt';
 import { CreateUserReqDto } from 'src/users/dto/req/create-user.req.dto';
+import { LoginReqDto } from 'src/users/dto/req/login.req.dto';
 import { CreatedUserResDto } from 'src/users/dto/res/created-user.res.dto';
-import { User } from 'src/users/user.entity';
-import { UsersService } from 'src/users/users.service';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   async register(
-    @Body() createUserReqDto: CreateUserReqDto,
+    @Body() userDto: CreateUserReqDto,
   ): Promise<CreatedUserResDto> {
-    createUserReqDto.password = await hash(createUserReqDto.password, 10);
-    const user: User = await this.usersService.create(createUserReqDto);
-
-    return new CreatedUserResDto(user);
+    let user: CreatedUserResDto = await this.authService.register(userDto);
+    user = new CreatedUserResDto(user);
+    return user;
   }
+
+  @Post('login')
+  async login(@Body() loginDto: LoginReqDto) {}
 }
