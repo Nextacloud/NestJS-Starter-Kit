@@ -4,6 +4,7 @@ import * as dayjs from 'dayjs';
 
 export class UserResource {
   constructor(data: UserInterface) {
+    this.id = data.id;
     this.username = data.username;
     this.email = data.email;
     this.first_name = data.first_name;
@@ -15,6 +16,9 @@ export class UserResource {
       process.env.DATE_TIME_FORMAT,
     );
   }
+
+  @IsNotEmpty()
+  id: string;
 
   @IsNotEmpty()
   username: string;
